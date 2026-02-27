@@ -25,7 +25,7 @@ function About() {
       {/* Container */}
       <div className="relative z-10 container mx-auto px-6 md:px-12 lg:px-20 flex items-center h-full">
         <div className="grid md:grid-cols-2 gap-12 items-center w-full">
-          
+
           {/* TEXT SECTION */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
@@ -33,9 +33,10 @@ function About() {
             transition={{ duration: 0.8 }}
             className=""
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-transparent bg-clip-text bg-red-500">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-red-600 to-red-400 text-transparent bg-clip-text">
               About Me
             </h2>
+            <div className="w-24 h-1 bg-red-600 rounded-full mb-8"></div>
 
             <p className="text-gray-200 text-lg leading-relaxed mb-4">
               I’m{" "}
@@ -52,11 +53,11 @@ function About() {
               I’m a passionate{" "}
               <span className="text-pink-400 font-semibold">Front-End</span> and{" "}
               <span className="text-red-400 font-semibold">Back-End Developer</span>{" "}
-              who loves creating interactive, responsive, and visually appealing web applications.  
-              I enjoy combining creativity with technology to design user-friendly interfaces and  
+              who loves creating interactive, responsive, and visually appealing web applications.
+              I enjoy combining creativity with technology to design user-friendly interfaces and
               build powerful, efficient systems that bring ideas to life.
             </p>
-   
+
 
             <div className="flex gap-4 mt-6">
               <a
@@ -84,7 +85,7 @@ function About() {
             <img
               src={profileImage}
               alt="Profile"
-              className="w-96 md:w-[32rem] lg:w-[36rem] h-auto object-cover rounded-3xl translate-y-6 md:translate-y-8"
+              className="w-72 md:w-[24rem] lg:w-[28rem] h-auto object-cover rounded-3xl translate-y-6 md:translate-y-8"
             />
           </motion.div>
 
