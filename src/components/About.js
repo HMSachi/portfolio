@@ -59,18 +59,20 @@ function About() {
             </p>
 
 
-            <div className="flex gap-4 mt-6">
-              <a
-                href="#projects"
-                className="px-6 py-3 bg-gradient-to-r from-black via-red-500 to-black text-white font-medium rounded-xl hover:scale-105 transition-transform duration-300"
-              >
-                View Projects
-              </a>
+            <div className="flex flex-wrap gap-4 mt-6">
               <a
                 href="#contact"
                 className="px-6 py-3 border-2 border-pink-500 text-pink-400 font-medium rounded-xl hover:bg-pink-600/10 hover:text-pink-300 transition-all duration-300"
               >
                 Contact Me
+              </a>
+              <a
+                href="http://localhost:5000/api/cv"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 py-3 bg-gradient-to-r from-black via-red-500 to-black text-white font-medium rounded-xl hover:scale-105 transition-transform duration-300"
+              >
+                Download CV
               </a>
             </div>
           </motion.div>

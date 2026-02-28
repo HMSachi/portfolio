@@ -1,7 +1,16 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { FaWhatsapp, FaEnvelope, FaPhoneAlt, FaLinkedin, FaGithub } from "react-icons/fa";
 
 function Contact() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: ""
+  });
+  const [status, setStatus] = useState({ type: "", message: "" });
+  const [loading, setLoading] = useState(false);
+
   const contactLinks = [
     {
       name: "Phone",
@@ -20,7 +29,7 @@ function Contact() {
     {
       name: "Email",
       icon: <FaEnvelope size={24} />,
-      link: "mailto:sachiniumayangana3@gmail.com", // Placeholder - please adjust
+      link: "mailto:sachiniumayangana3@gmail.com",
       color: "hover:text-red-500",
       label: "Email"
     },
@@ -39,6 +48,39 @@ function Contact() {
       label: "GitHub"
     }
   ];
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setStatus({ type: "", message: "" });
+
+    try {
+      const response = await fetch("http://localhost:5000/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setStatus({ type: "success", message: "Message sent successfully!" });
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        setStatus({ type: "error", message: data.error || "Something went wrong." });
+      }
+    } catch (error) {
+      setStatus({ type: "error", message: "Could not connect to server." });
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <section id="contact" className="scroll-mt-24 py-20 px-6 bg-black text-white">
@@ -80,32 +122,54 @@ function Contact() {
             ))}
           </motion.div>
 
-          {/* MESSAGE FORM - Restored to early style */}
+          {/* MESSAGE FORM */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             className="w-full max-w-md"
           >
-            <form className="flex flex-col gap-4 bg-[#121212] p-8 rounded-2xl shadow-xl border border-gray-900">
+            <form onSubmit={handleSubmit} className="flex flex-col gap-4 bg-[#121212] p-8 rounded-2xl shadow-xl border border-gray-900">
               <input
                 type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
                 placeholder="Your Name"
+                required
                 className="p-3 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 bg-black text-white transition-all"
               />
               <input
                 type="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
                 placeholder="Your Email"
+                required
                 className="p-3 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 bg-black text-white transition-all"
               />
               <textarea
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
                 placeholder="Your Message"
                 rows="4"
+                required
                 className="p-3 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 bg-black text-white transition-all resize-none"
               ></textarea>
 
-              <button className="bg-gradient-to-r from-black via-red-500 to-black text-white p-3 rounded-xl transition duration-300 ease-in-out hover:from-gray-900 hover:via-red-600 hover:to-gray-900 font-bold tracking-wide shadow-lg">
-                Send Message
+              <button
+                type="submit"
+                disabled={loading}
+                className={`bg-gradient-to-r from-black via-red-500 to-black text-white p-3 rounded-xl transition duration-300 ease-in-out hover:from-gray-900 hover:via-red-600 hover:to-gray-900 font-bold tracking-wide shadow-lg ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
+              >
+                {loading ? 'Sending...' : 'Send Message'}
               </button>
+
+              {status.message && (
+                <p className={`text-center text-sm mt-2 ${status.type === 'success' ? 'text-green-500' : 'text-red-500'}`}>
+                  {status.message}
+                </p>
+              )}
             </form>
           </motion.div>
         </div>
