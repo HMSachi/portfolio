@@ -4,7 +4,7 @@ import {
 } from "react-icons/fa";
 import {
   SiTailwindcss, SiNextdotjs, SiTypescript, SiExpress,
-  SiSpringboot, SiMysql, SiPostgresql, SiMongodb, SiFirebase,
+  SiSpringboot, SiMysql, SiMongodb, SiFirebase,
   SiJira, SiSelenium, SiApachejmeter, SiC, SiCplusplus
 } from "react-icons/si";
 
