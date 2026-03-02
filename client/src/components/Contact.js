@@ -29,8 +29,8 @@ function Contact() {
     {
       name: "Email",
       icon: <FaEnvelope size={24} />,
-      link: "mailto:sachiniumayangana3@gmail.com",
-      color: "hover:text-red-500",
+      link: "mailto:sachinihmu@gmail.com",
+      color: "hover:text-rose-500",
       label: "Email"
     },
     {
@@ -91,18 +91,20 @@ function Contact() {
           transition={{ duration: 0.6 }}
           className="text-center mb-10"
         >
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-red-600 to-red-400 text-transparent bg-clip-text">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-rose-600 to-rose-400 text-transparent bg-clip-text">
             Get In Touch
           </h2>
-          <div className="w-24 h-1 bg-red-600 mx-auto rounded-full mt-2"></div>
+          <div className="w-24 h-1 bg-rose-600 mx-auto rounded-full mt-2"></div>
         </motion.div>
 
         <div className="max-w-4xl mx-auto flex flex-col items-center gap-12">
 
           {/* SOCIAL ICONS GROUP */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
             className="flex flex-wrap justify-center gap-8"
           >
             {contactLinks.map((item, index) => (
@@ -111,24 +113,26 @@ function Contact() {
                 href={item.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`flex flex-col items-center gap-2 group transition-all duration-300 ${item.color}`}
+                className={`flex flex-col items-center gap-3 group transition-all duration-300 ${item.color}`}
                 title={item.name}
               >
-                <div className="p-4 bg-[#121212] rounded-full border border-gray-800 group-hover:border-red-500 group-hover:scale-110 transition-all shadow-lg text-red-500 group-hover:text-current">
+                <div className="p-5 bg-[#0a0a0a] rounded-2xl border border-gray-800 group-hover:border-rose-500 group-hover:bg-[#121212] group-hover:scale-110 transition-all shadow-xl text-rose-500 group-hover:text-current group-hover:shadow-[0_0_20px_rgba(225,29,72,0.2)]">
                   {item.icon}
                 </div>
-                <span className="text-xs font-medium text-gray-400 group-hover:text-white">{item.name}</span>
+                <span className="text-xs font-bold uppercase tracking-widest text-gray-500 group-hover:text-white transition-colors">{item.name}</span>
               </a>
             ))}
           </motion.div>
 
           {/* MESSAGE FORM */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
             className="w-full max-w-md"
           >
-            <form onSubmit={handleSubmit} className="flex flex-col gap-4 bg-[#121212] p-8 rounded-2xl shadow-xl border border-gray-900">
+            <form onSubmit={handleSubmit} className="flex flex-col gap-4 bg-[#0a0a0a] p-10 rounded-[2rem] shadow-2xl border border-gray-900 group">
               <input
                 type="text"
                 name="name"
@@ -136,7 +140,7 @@ function Contact() {
                 onChange={handleChange}
                 placeholder="Your Name"
                 required
-                className="p-3 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 bg-black text-white transition-all"
+                className="p-4 border border-gray-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-500/50 focus:border-rose-500/50 bg-black text-white transition-all hover:border-gray-700"
               />
               <input
                 type="email"
@@ -145,7 +149,7 @@ function Contact() {
                 onChange={handleChange}
                 placeholder="Your Email"
                 required
-                className="p-3 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 bg-black text-white transition-all"
+                className="p-4 border border-gray-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-500/50 focus:border-rose-500/50 bg-black text-white transition-all hover:border-gray-700"
               />
               <textarea
                 name="message"
@@ -154,19 +158,19 @@ function Contact() {
                 placeholder="Your Message"
                 rows="4"
                 required
-                className="p-3 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 bg-black text-white transition-all resize-none"
+                className="p-4 border border-gray-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-rose-500/50 focus:border-rose-500/50 bg-black text-white transition-all resize-none hover:border-gray-700"
               ></textarea>
 
               <button
                 type="submit"
                 disabled={loading}
-                className={`bg-gradient-to-r from-black via-red-500 to-black text-white p-3 rounded-xl transition duration-300 ease-in-out hover:from-gray-900 hover:via-red-600 hover:to-gray-900 font-bold tracking-wide shadow-lg ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
+                className={`w-full bg-gradient-to-r from-[#4c0519] via-[#e11d48] to-[#4c0519] text-white font-bold py-4 rounded-xl hover:scale-[1.02] transition-all duration-300 shadow-lg shadow-rose-900/40 disabled:opacity-50 border border-rose-400/20 tracking-widest uppercase text-sm ${loading ? 'cursor-not-allowed' : ''}`}
               >
                 {loading ? 'Sending...' : 'Send Message'}
               </button>
 
               {status.message && (
-                <p className={`text-center text-sm mt-2 ${status.type === 'success' ? 'text-green-500' : 'text-red-500'}`}>
+                <p className={`text-center text-sm mt-4 font-medium ${status.type === 'success' ? 'text-green-500' : 'text-rose-500'}`}>
                   {status.message}
                 </p>
               )}

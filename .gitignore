@@ -23,3 +23,4 @@ backend/uploads/
 .env*
 !.env.example
 *.log*
+.env*.local

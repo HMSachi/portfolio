@@ -1,0 +1,5 @@
+# Exclude large videos that exceed Vercel's CLI upload limit (250MB)
+client/src/assets/pp.mp4
+client/src/assets/car.mp4
+client/src/assets/techs.mp4
+client/src/assets/resturant.mp4
