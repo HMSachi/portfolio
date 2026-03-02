@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Mail, Trash2, RefreshCcw, User, Clock, MessageSquare } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = '/api';
 
 function App() {
   const [messages, setMessages] = useState([]);
