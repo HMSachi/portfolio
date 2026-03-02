@@ -1,16 +1,15 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 import {
-  FaReact, FaJsSquare, FaHtml5, FaCss3Alt, FaJava, FaPython,
-  FaNodeJs, FaPhp, FaAws, FaDocker, FaGitAlt, FaGithub,
+  FaReact, FaJsSquare, FaHtml5, FaJava, FaPython,
+  FaNodeJs, FaAws, FaDocker,
   FaGraduationCap, FaCertificate, FaExternalLinkAlt, FaAward,
-  FaUsers, FaCode, FaMicrochip
+  FaUsers, FaCode
 } from "react-icons/fa";
 import {
-  SiTailwindcss, SiNextdotjs, SiTypescript, SiExpress,
-  SiSpringboot, SiMysql, SiMongodb, SiFirebase,
-  SiJira, SiSelenium, SiApachejmeter, SiC, SiCplusplus,
-  SiDatabricks, SiAmazonwebservices
+  SiTailwindcss, SiNextdotjs, SiTypescript,
+  SiSpringboot, SiMysql, SiMongodb,
+  SiC, SiCplusplus
 } from "react-icons/si";
 
 const SkillCircle = ({ percentage, icon, name }) => {
