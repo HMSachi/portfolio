@@ -1,16 +1,16 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import logoImage from "../assets/logo.jpeg";
-import backgroundVideo from "../assets/background.mp4";
 
 function About() {
-  const roles = ["Software Developer", "Undergraduate Student", "Software Engineering Student"];
+
   const [roleIndex, setRoleIndex] = useState(0);
   const [displayText, setDisplayText] = useState("");
   const [isDeleting, setIsDeleting] = useState(false);
   const [typingSpeed, setTypingSpeed] = useState(150);
 
   useEffect(() => {
+    const roles = ["Software Developer", "Undergraduate Student", "Software Engineering Student"];
     const handleTyping = () => {
       const currentRole = roles[roleIndex];
       if (isDeleting) {
@@ -31,7 +31,7 @@ function About() {
 
     const timer = setTimeout(handleTyping, typingSpeed);
     return () => clearTimeout(timer);
-  }, [displayText, isDeleting, roleIndex, roles, typingSpeed]);
+  }, [displayText, isDeleting, roleIndex, typingSpeed]);
 
   return (
     <section
