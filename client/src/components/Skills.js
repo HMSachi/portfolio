@@ -7,7 +7,10 @@ import {
   FaUsers, FaCode, FaGithub
 } from "react-icons/fa";
 import { AiOutlineApi } from "react-icons/ai";
-SiC, SiCplusplus, SiFigma, SiSelenium, SiApachejmeter,
+import {
+  SiTailwindcss, SiNextdotjs, SiTypescript,
+  SiSpringboot, SiMysql, SiMongodb,
+  SiC, SiCplusplus, SiFigma, SiSelenium, SiApachejmeter,
   SiPhp, SiExpress
 } from "react-icons/si";
 
