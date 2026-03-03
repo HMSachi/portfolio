@@ -207,6 +207,15 @@ function Skills() {
       link: "https://intellipaat.com/academy/certificate-link/?Yz0xNjU0JnU9MzIwNDYwJmV4dD0x",
       skills: ["Amazon Web Services (AWS)"],
       logo: "https://intellipaat.com/wp-content/themes/intellipaat/images/intellipaat-logo.png"
+    },
+    {
+      title: "Hackathon Competition 2024 – 1st Runners-Up",
+      provider: "IEEE Student Branch CINEC",
+      id: "N/A",
+      date: "2024",
+      link: "#",
+      skills: ["Problem Solving", "Teamwork", "Innovation"],
+      logo: "https://www.ieee.org/content/dam/ieee-org/ieee/web/org/globals/ieee_mb_black.png"
     }
   ];
 
