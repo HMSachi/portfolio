@@ -1,13 +1,19 @@
 const express = require('express');
 const cors = require('cors');
-const sqlite3 = require('sqlite3').verbose();
 const bodyParser = require('body-parser');
 const path = require('path');
 const multer = require('multer');
 const fs = require('fs');
+const { createClient } = require('@supabase/supabase-js');
+require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+
+// Supabase Setup
+const supabaseUrl = process.env.SUPABASE_URL;
+const supabaseKey = process.env.SUPABASE_KEY;
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 // Middleware
 app.use(cors());
@@ -24,67 +30,63 @@ const storage = multer.diskStorage({
         cb(null, uploadDir)
     },
     filename: function (req, file, cb) {
-        // Always save as cv.pdf to overwrite previous versions easily
         cb(null, 'cv.pdf')
     }
 })
 
 const upload = multer({ storage: storage })
 
-// Database Setup
-const dbPath = path.resolve(__dirname, 'database.sqlite');
-const db = new sqlite3.Database(dbPath, (err) => {
-    if (err) {
-        console.error('Error opening database:', err.message);
-    } else {
-        console.log('Connected to the SQLite database.');
-        db.run(`CREATE TABLE IF NOT EXISTS messages (
-      id INTEGER PRIMARY KEY AUTOINCREMENT,
-      name TEXT NOT NULL,
-      email TEXT NOT NULL,
-      message TEXT NOT NULL,
-      timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
-    )`);
-    }
-});
-
 // Routes
-app.post('/api/contact', (req, res) => {
+app.post('/api/contact', async (req, res) => {
     const { name, email, message } = req.body;
 
     if (!name || !email || !message) {
         return res.status(400).json({ error: 'All fields are required.' });
     }
 
-    const query = `INSERT INTO messages (name, email, message) VALUES (?, ?, ?)`;
-    db.run(query, [name, email, message], function (err) {
-        if (err) {
-            console.error('Error inserting message:', err.message);
-            return res.status(500).json({ error: 'Failed to store message.' });
-        }
-        res.status(201).json({ id: this.lastID, message: 'Message sent successfully!' });
-    });
+    try {
+        const { data, error } = await supabase
+            .from('messages')
+            .insert([{ name, email, message }]);
+
+        if (error) throw error;
+
+        res.status(201).json({ message: 'Message sent successfully!' });
+    } catch (err) {
+        console.error('Error inserting message:', err.message);
+        res.status(500).json({ error: 'Failed to store message.' });
+    }
 });
 
-app.get('/api/messages', (req, res) => {
-    db.all('SELECT * FROM messages ORDER BY timestamp DESC', [], (err, rows) => {
-        if (err) {
-            console.error('Error fetching messages:', err.message);
-            return res.status(500).json({ error: 'Failed to fetch messages.' });
-        }
-        res.json(rows);
-    });
+app.get('/api/messages', async (req, res) => {
+    try {
+        const { data, error } = await supabase
+            .from('messages')
+            .select('*')
+            .order('timestamp', { ascending: false });
+
+        if (error) throw error;
+        res.json(data);
+    } catch (err) {
+        console.error('Error fetching messages:', err.message);
+        res.status(500).json({ error: 'Failed to fetch messages.' });
+    }
 });
 
-app.delete('/api/messages/:id', (req, res) => {
+app.delete('/api/messages/:id', async (req, res) => {
     const { id } = req.params;
-    db.run('DELETE FROM messages WHERE id = ?', id, function (err) {
-        if (err) {
-            console.error('Error deleting message:', err.message);
-            return res.status(500).json({ error: 'Failed to delete message.' });
-        }
+    try {
+        const { error } = await supabase
+            .from('messages')
+            .delete()
+            .eq('id', id);
+
+        if (error) throw error;
         res.json({ message: 'Message deleted successfully.' });
-    });
+    } catch (err) {
+        console.error('Error deleting message:', err.message);
+        res.status(500).json({ error: 'Failed to delete message.' });
+    }
 });
 
 // CV Routes
@@ -98,7 +100,7 @@ app.post('/api/cv', upload.single('cv'), (req, res) => {
 app.get('/api/cv', (req, res) => {
     const cvPath = path.resolve(__dirname, 'uploads', 'cv.pdf');
     if (fs.existsSync(cvPath)) {
-        res.download(cvPath); // Set disposition and send it.
+        res.download(cvPath);
     } else {
         res.status(404).json({ error: 'CV not found.' });
     }
