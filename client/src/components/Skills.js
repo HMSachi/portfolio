@@ -6,6 +6,7 @@ import {
   FaGraduationCap, FaCertificate, FaExternalLinkAlt, FaAward,
   FaUsers, FaCode, FaGithub
 } from "react-icons/fa";
+import { DiScrum } from "react-icons/di";
 import { AiOutlineApi } from "react-icons/ai";
 import {
   SiTailwindcss, SiNextdotjs, SiTypescript,
@@ -158,6 +159,7 @@ function Skills() {
         { name: "GitHub", icon: <FaGithub size={28} />, percentage: 95 },
         { name: "Selenium", icon: <SiSelenium size={28} />, percentage: 80 },
         { name: "JMeter", icon: <SiApachejmeter size={28} />, percentage: 75 },
+        { name: "Scrum", icon: <DiScrum size={28} />, percentage: 90 },
       ],
     },
   ];
