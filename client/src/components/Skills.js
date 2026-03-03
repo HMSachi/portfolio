@@ -9,7 +9,7 @@ import {
 import {
   SiTailwindcss, SiNextdotjs, SiTypescript,
   SiSpringboot, SiMysql, SiMongodb,
-  SiC, SiCplusplus
+  SiC, SiCplusplus, SiFigma
 } from "react-icons/si";
 
 const SkillCircle = ({ percentage, icon, name }) => {
@@ -143,6 +143,13 @@ function Skills() {
         { name: "MongoDB", icon: <SiMongodb size={28} />, percentage: 80 },
         { name: "AWS", icon: <FaAws size={28} />, percentage: 70 },
         { name: "Docker", icon: <FaDocker size={28} />, percentage: 75 },
+      ],
+    },
+    {
+      title: "Tools & Methodologies",
+      skills: [
+        { name: "Figma", icon: <SiFigma size={28} />, percentage: 85 },
+        { name: "Agile Practice", icon: <FaUsers size={28} />, percentage: 90 },
       ],
     },
   ];
