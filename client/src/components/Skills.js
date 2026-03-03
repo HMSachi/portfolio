@@ -4,7 +4,7 @@ import {
   FaReact, FaJsSquare, FaHtml5, FaJava, FaPython,
   FaNodeJs, FaAws, FaDocker,
   FaGraduationCap, FaCertificate, FaExternalLinkAlt, FaAward,
-  FaUsers, FaCode
+  FaUsers, FaCode, FaGithub
 } from "react-icons/fa";
 import {
   SiTailwindcss, SiNextdotjs, SiTypescript,
