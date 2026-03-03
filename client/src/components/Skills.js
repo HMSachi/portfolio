@@ -48,8 +48,8 @@ const SkillCircle = ({ percentage, icon, name }) => {
         <svg className="w-full h-full transform -rotate-90">
           <defs>
             <linearGradient id={`gradient-${sanitizedName}`} x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#06b6d4" />
-              <stop offset="100%" stopColor="#6366f1" />
+              <stop offset="0%" stopColor="#f43f5e" />
+              <stop offset="100%" stopColor="#4c0519" />
             </linearGradient>
           </defs>
           <circle
@@ -74,7 +74,7 @@ const SkillCircle = ({ percentage, icon, name }) => {
             viewport={{ once: true }}
             transition={{ duration: 1.5, ease: "easeOut", delay: 0.2 }}
             strokeLinecap="round"
-            className="shadow-[0_0_20px_rgba(6,182,212,0.3)]"
+            className="shadow-[0_0_20px_rgba(244,63,94,0.3)]"
           />
         </svg>
 
