@@ -28,7 +28,7 @@ const projects = [
     title: "Portfolio Website",
     description: "My personal portfolio website built with React and Tailwind CSS.",
     github: "https://github.com/HMSachi/portfolio",
-    hosted: "#",
+    hosted: "https://portfolio-abv5.vercel.app/",
     video: PortfolioVideo,
     tags: ["React", "Tailwind CSS", "Framer Motion"],
   },
