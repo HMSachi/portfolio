@@ -6,10 +6,9 @@ import {
   FaGraduationCap, FaCertificate, FaExternalLinkAlt, FaAward,
   FaUsers, FaCode, FaGithub
 } from "react-icons/fa";
-import {
-  SiTailwindcss, SiNextdotjs, SiTypescript,
-  SiSpringboot, SiMysql, SiMongodb,
-  SiC, SiCplusplus, SiFigma, SiSelenium, SiApachejmeter
+import { AiOutlineApi } from "react-icons/ai";
+SiC, SiCplusplus, SiFigma, SiSelenium, SiApachejmeter,
+  SiPhp, SiExpress
 } from "react-icons/si";
 
 const SkillCircle = ({ percentage, icon, name }) => {
@@ -121,6 +120,7 @@ function Skills() {
         { name: "Python", icon: <FaPython size={28} />, percentage: 80 },
         { name: "C", icon: <SiC size={28} />, percentage: 85 },
         { name: "C++", icon: <SiCplusplus size={28} />, percentage: 75 },
+        { name: "PHP", icon: <SiPhp size={28} />, percentage: 70 },
       ],
     },
     {
@@ -137,7 +137,9 @@ function Skills() {
     {
       title: "Backend & Systems",
       skills: [
-        { name: "Node.js", icon: <FaNodeJs size={28} />, percentage: 85 },
+        { name: "Node.js", icon: <FaNodeJs size={28} />, percentage: 80 },
+        { name: "Express.js", icon: <SiExpress size={28} />, percentage: 80 },
+        { name: "RESTful APIs", icon: <AiOutlineApi size={28} />, percentage: 80 },
         { name: "Spring Boot", icon: <SiSpringboot size={28} />, percentage: 80 },
         { name: "MySQL", icon: <SiMysql size={28} />, percentage: 90 },
         { name: "MongoDB", icon: <SiMongodb size={28} />, percentage: 80 },
